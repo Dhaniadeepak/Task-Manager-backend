@@ -8,8 +8,7 @@ class ApiError extends Error {
   }
 }
 
-// Central error handler: every error in the app ends up here
-// eslint-disable-next-line no-unused-vars
+
 const errorHandler = (err, req, res, next) => {
   let statusCode = err.statusCode || 500;
   let message = err.message || "Internal server error";
@@ -30,7 +29,6 @@ const errorHandler = (err, req, res, next) => {
     statusCode = 401;
     message = "Invalid or expired token";
   }
-
   if (statusCode === 500 && env.isProduction) {
     message = "Internal server error";
   }
